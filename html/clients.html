@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes - Dashboard</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+
+    <div class="dashboard-container">
+        
+        <aside class="sidebar">
+            <div class="user-profile">
+                <div class="user-avatar"><i class="fa-solid fa-user"></i></div>
+                <div class="user-info">
+                    <h3>Usuário</h3>
+                    <p>Empresa</p>
+                    <p class="role">Cargo</p>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active"><a href="../html/dashboard.html"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
+                    <li><a href="../html/sales.html"><i class="fa-solid fa-chart-line"></i> Vendas</a></li>
+                    <li><a href="../html/clients.html"><i class="fa-solid fa-users"></i> Clientes</a></li>
+                    <li><a href="../html/products.html"><i class="fa-solid fa-box-open"></i> Produtos</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer"><i class="fa-solid fa-bars"></i></div>
+        </aside>
+
+        <main class="main-content">
+            
+            <header class="main-header">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Buscar produtos por nome, SKU, pedidos, clientes, ...">
+                </div>
+                
+                <div class="dropdown-io">
+                    <button class="btn-io">
+                        <i class="fa-solid fa-circle-down"></i> Exportar e Importar
+                    </button>
+                    <div class="dropdown-content">
+                        <div class="dropdown-section">
+                            <span class="section-title">Exportar atual</span>
+                            <a href="#" onclick="exportarClientesPDF()"><i class="fa-regular fa-file-pdf"></i> PDF</a>
+                            <a href="#" onclick="exportarClientesCSV()"><i class="fa-solid fa-file-csv"></i> CSV</a>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <div class="dropdown-section">
+                            <span class="section-title">Importar novos dados</span>
+                            <label class="import-label">
+                                <input type="file" id="clientesCsvInput" accept=".csv" onchange="importarClientesCSV(event)" style="display:none;">
+                                <span><i class="fa-solid fa-file-csv"></i> Selecionar arquivo CSV</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn-add-order">
+                    <i class="fa-solid fa-plus"></i> Adicionar Clientes
+                </button>
+            </header>
+
+            <section class="clients-section">
+                <h1 class="page-title">Clientes</h1>
+
+                <div class="clients-search-container">
+                    <div class="sub-search-bar full-width-search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" placeholder="Buscar nome, e-mail ou cpf">
+                    </div>
+                </div>
+
+                <div class="table-container" id="printable-clients-table">
+                    <table class="sales-table" id="printable-clients-table">
+    <thead>
+        <tr>
+            <th>Cliente</th>
+            <th>E-mail</th>
+            <th>CPF</th>
+            <th>Data do pedido</th>
+            <th>Valor</th>
+            <th>Origem</th>
+        </tr>
+    </thead>
+    <tbody id="clients-table-body">
+        <tr>
+            <td>Ana Julia</td>
+            <td>customer1@gmail.com</td>
+            <td>123578938930</td>
+            <td>13/04/2026</td>
+            <td>R$30</td>
+            <td>Instagram Ad</td>
+        </tr>
+        <tr>
+            <td>Jaciara Caldas</td>
+            <td>customer4@gmail.com</td>
+            <td>199292902000</td>
+            <td>12/04/2026</td>
+            <td>R$67</td>
+            <td>Facebook</td>
+        </tr>
+        <tr>
+            <td>Edilene Souza</td>
+            <td>customer8@gmail.com</td>
+            <td>1937373838999</td>
+            <td>08/04/2026</td>
+            <td>R$135</td>
+            <td>Google Organico</td>
+        </tr>
+        <tr>
+            <td>Claudia Geraldo</td>
+            <td>customer2@gmail.com</td>
+            <td>123578938930</td>
+            <td>03/04/2026</td>
+            <td>R$114</td>
+            <td>Indicação / WhatsApp</td>
+        </tr>
+        <tr>
+            <td>José Silva</td>
+            <td>customer2@gmail.com</td>
+            <td>15498762409</td>
+            <td>03/03/2026</td>
+            <td>R$24</td>
+            <td>Facebook</td>
+        </tr>
+    </tbody>
+</table>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <script src="../js/script.js"></script>
+</body>
+</html>

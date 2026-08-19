@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estatísticas - Dashboard</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+    
+</head>
+<body>
+
+    <div class="dashboard-container">
+        
+        <aside class="sidebar">
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="user-info">
+                    <h3>Usuário</h3>
+                    <p>Empresa</p>
+                    <p class="role">Cargo</p>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active"><a href="dashboard.html"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
+                    <li><a href="sales.html"><i class="fa-solid fa-chart-line"></i> Vendas</a></li>
+                    <li><a href="clients.html"><i class="fa-solid fa-users"></i> Clientes</a></li>
+                    <li><a href="products.html"><i class="fa-solid fa-box-open"></i> Produtos</a></li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            
+            <header class="main-header">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Buscar produtos por nome, SKU, pedidos, clientes, ...">
+                </div>
+                
+                <div class="dropdown-io">
+                    <button class="btn-io">
+                        <i class="fa-solid fa-circle-down"></i> Exportar e Importar
+                    </button>
+                    <div class="dropdown-content">
+                        <div class="dropdown-section">
+                            <span class="section-title">Exportar como:</span>
+                            <a href="#" id="btnExportarPDF" onclick="exportarDashboardPDF()"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                            <a href="#" id="btnExportarCSV" onclick="exportarDashboardParaCSV()" ><i class="fa-solid fa-file-csv"></i> CSV</a>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <div class="dropdown-section">
+                            <span class="section-title">Importar de:</span>
+                            <label class="import-label" style="cursor: pointer;">
+                                <input type="file" accept=".csv" onchange="importarCSV(event)" style="display:none;">
+                                <span><i class="fa-solid fa-file-csv"></i> Arquivo CSV (Vendas)</span>
+                            </label>
+                            <label class="import-label" style="cursor: pointer;">
+                                <input type="file" accept=".csv" onchange="importarProdutosCSV(event)" style="display:none;">
+                                <span><i class="fa-solid fa-file-csv"></i> Arquivo CSV (Produtos)</span>
+                            </label>
+                            <label class="import-label" style="cursor: pointer;">
+                                <input type="file" accept=".csv" onchange="importarClientesCSV(event)" style="display:none;">
+                                <span><i class="fa-solid fa-file-csv"></i> Arquivo CSV (Clientes)</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <section class="dashboard-section" id="printable-dashboard">
+                <h1 class="page-title">Estatísticas</h1>
+
+                <div class="charts-grid">
+                    
+                    <div class="chart-card">
+                        <h3>Clientes - Origem</h3>
+                        <div class="chart-placeholder">[Gráfico de Barras Mensal]</div>
+                    </div>
+
+                    <div class="chart-card">
+                        <h3>Conversão das vendas</h3>
+                        <div class="chart-placeholder">[Gráfico de Barras Mensal de Vendas]</div>
+                    </div>
+
+                    <div class="chart-card">
+                        <h3>Categorias de Produtos</h3>
+                        <div class="chart-placeholder">[Gráfico Funil/Conversão]</div>
+                    </div>
+
+                    <div class="chart-card">
+                        <h3>Estados</h3>
+                        <div class="chart-placeholder">[Gráfico de Barras Estados]</div>
+                    </div>
+
+                    <div class="chart-card full-width">
+                        <h3>TOP 5 Produtos mais Vendidos</h3>
+                        <div class="chart-placeholder">[Gráfico de Linhas/Barras de Produtos]</div>
+                    </div>
+
+                </div>
+            </section>
+        </main>
+
+    </div>
+    
+    <script src="../js/script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <title>FAÇA LOGIN</title>
+</head>
+<body> 
+    <div class="login">
+        <label for="emailInput">LOGIN</label>
+        <input type="email" id="emailInput" value="admin@nathalia.com" placeholder="Usuário">
+        
+        <br><br>
+        
+        <label for="senhaInput">SENHA</label>
+        <input type="password" id="senhaInput" value="12345678" maxlength="8" required placeholder="********" onkeyup="verificarSenha(event)">
+        
+        <br><br>
+        
+        <input class="entrar" type="button" value="Entrar" onclick="entra()">
+    </div>
+
+    <script>
+        // Definir a senha padrão do sistema
+        const SENHA_CORRETA = "12345678";
+
+        function entra() {
+            const senhaDigitada = document.getElementById("senhaInput").value;
+            
+            if (senhaDigitada === SENHA_CORRETA) {
+                // Redireciona para o Dashboard principal
+                window.location.href = "../html/dashboard.html";
+            } else {
+                alert("Senha incorreta! Tente novamente.");
+            }
+        }
+
+        // Função que detecta a digitação da senha
+        function verificarSenha(event) {
+            const senhaDigitada = event.target.value;
+
+            // Se o usuário apertar 'Enter' ou atingir o tamanho da senha correta
+            if (event.key === "Enter" || senhaDigitada.length === SENHA_CORRETA.length) {
+                if (senhaDigitada === SENHA_CORRETA) {
+                    window.location.href = "../html/dashboard.html";
+                }
+            }
+        }
+    </script>
+    <div class="text1">
+    <p >Feito por Nathália Renata Garcia Oliveira
+    <br>
+    Contato: nathalia.renata.oli@gmail.com</p>
+    </div>
+</body>
+</html>
