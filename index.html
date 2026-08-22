@@ -12,14 +12,14 @@
     <div class="login">
         <label for="emailInput">LOGIN</label>
         <input type="email" id="emailInput" value="admin@nathalia.com" placeholder="Usuário">
-        
+
         <br><br>
-        
+
         <label for="senhaInput">SENHA</label>
         <input type="password" id="senhaInput" value="12345678" maxlength="8" required placeholder="********" onkeyup="verificarSenha(event)">
-        
+
         <br><br>
-        
+
         <input class="entrar" type="button" value="Entrar" onclick="entra()">
     </div>
 
@@ -29,10 +29,10 @@
 
         function entra() {
             const senhaDigitada = document.getElementById("senhaInput").value;
-            
+
             if (senhaDigitada === SENHA_CORRETA) {
                 // Redireciona para o Dashboard principal
-                window.location.href = "../html/dashboard.html";
+                window.location.href = "./html/dashboard.html";
             } else {
                 alert("Senha incorreta! Tente novamente.");
             }
@@ -49,6 +49,8 @@
                 }
             }
         }
+        }
+        
     </script>
     <div class="text1">
     <p >Feito por Nathália Renata Garcia Oliveira
