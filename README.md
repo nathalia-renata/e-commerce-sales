@@ -26,7 +26,7 @@ O projeto foi criado para atender o vendedor/administrador responsável.
 
 * Arquitetura Multi-página Estruturada: Separação clara das regras de negócio em visões dedicadas para Dashboard, Vendas, Clientes e Produtos.
 
-* Padronização do Layout: Reaproveitamento consistente do menu lateral (<aside>) e do cabeçalho em todas as páginas, mantendo a integridade do código.
+* Padronização do Layout: Reaproveitamento consistente do menu lateral e do cabeçalho em todas as páginas, mantendo a integridade do código.
 
 * Manipulação e Exportação de Dados: Estrutura pronta para suportar operações completas de CRUD (criação, leitura, atualização e exclusão) e geração de relatórios (PDF e CSV).
 
@@ -46,7 +46,7 @@ O projeto foi criado para atender o vendedor/administrador responsável.
 
 ### Front-end & Estrutura
 
-* HTML5 Semântico: Estruturação das páginas com tags modernas (<aside>, <main>, <nav>, <header>) para melhor acessibilidade e SEO.
+* HTML5 Semântico: Estruturação das páginas com tags modernas para melhor acessibilidade e SEO.
 
 * CSS3: Estilização responsiva, layout em Grid/Flexbox e customização visual dos componentes e tabelas.
 
@@ -67,7 +67,7 @@ O projeto foi criado para atender o vendedor/administrador responsável.
 ## 📄🖥️ Visualizar Site
 
 Para visualizar as páginas e testar algumas funcionalidades acesse o site abaixo 👇🏻
-https://nathalia-renata.github.io/e-commerce-sales/
+ * https://nathalia-renata.github.io/e-commerce-sales/
 
 ### Arquivos para testar a importação de dados:
  * [Baixar dados Produtos em CSV](./data/produtos-para-teste.csv)
@@ -78,7 +78,7 @@ https://nathalia-renata.github.io/e-commerce-sales/
 ## ✍🏻 Prototipagem do Projeto 
 
 Para visualizar o protótipo acesse o link abaixo 👇🏻:
-https://canva.link/ul79hdfzu30y9z9
+ * https://canva.link/ul79hdfzu30y9z9
 
 A prototipagem foi desenvolvida no Canva, apresentando uma interface limpa, intuitiva e totalmente focada na experiência do utilizador (UX/UI).
 Este protótipo serviu como base visual essencial para validar a arquitetura de informação do site antes da sua implementação em código, garantindo que o design final se mantivesse fiel à identidade visual da marca tanto em computadores quanto em dispositivos móveis.
@@ -86,4 +86,4 @@ Este protótipo serviu como base visual essencial para validar a arquitetura de 
 ## 👩‍💻 Autora
 
 * Nathália Renata Garcia Oliveira
-* Contacto: [nathalia.renata.oli@gmail.com](mailto:nathalia.renata.oli@gmail.com)
+* Contato: [nathalia.renata.oli@gmail.com](mailto:nathalia.renata.oli@gmail.com)
