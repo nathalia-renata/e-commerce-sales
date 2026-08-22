@@ -9,44 +9,44 @@
 </head>
 <body> 
     <div class="login">
-        <label for="emailInput">LOGIN</label>
-        <input type="email" id="emailInput" value="admin@nathalia.com" placeholder="Usuário" onkeyup="verificarTeclas(event)">
-        
-        <br><br>
-        
-        <label for="senhaInput">SENHA</label>
-        <input type="password" id="senhaInput" value="12345678" maxlength="8" required placeholder="********" onkeyup="verificarTeclas(event)">
-        
-        <br><br>
-        
-        <input class="entrar" type="button" value="Entrar" onclick="entra()">
+        <!-- O formulário intercepta o 'Enter' e o clique do botão automaticamente -->
+        <form id="loginForm" onsubmit="validarLogin(event)">
+            <label for="emailInput">LOGIN</label>
+            <input type="email" id="emailInput" value="admin@nathalia.com" placeholder="Usuário" required>
+            
+            <br><br>
+            
+            <label for="senhaInput">SENHA</label>
+            <input type="password" id="senhaInput" value="12345678" maxlength="8" required placeholder="********">
+            
+            <br><br>
+            
+            <button type="submit" class="entrar">Entrar</button>
+        </form>
     </div>
 
     <script>
         const SENHA_CORRETA = "12345678";
         const LOGIN_CORRETO = "admin@nathalia.com";
 
-        function entra() {
+        function validarLogin(event) {
+            // Evita que a página recarregue ao enviar o formulário
+            event.preventDefault();
+
             const loginDigitado = document.getElementById("emailInput").value.trim();
             const senhaDigitada = document.getElementById("senhaInput").value;
 
             if (loginDigitado === LOGIN_CORRETO && senhaDigitada === SENHA_CORRETA) {
-                // Redirecionamento dinâmico que funciona tanto local quanto no GitHub Pages
-                if (window.location.hostname.includes("github.io")) {
-                    window.location.href = "../html/dashboard.html";
-                } else {
-                    window.location.href = "../html/dashboard.html";
-                }
+                // Descobre a pasta atual dinamicamente sem quebrar no GitHub Pages ou Local
+                const pathAtual = window.location.pathname;
+                const pastaBase = pathAtual.substring(0, pathAtual.lastIndexOf('/'));
+                
+                // Redireciona com base na localização atual
+                window.location.assign(pastaBase + "/html/dashboard.html");
             } else {
                 alert("E-mail ou senha incorretos! Tente novamente.");
             }
         }
-
-        function verificarTeclas(event) {
-            if (event.key === "Enter") {
-                entra();
-            }
-        }    
     </script>
 
     <div class="text1">
