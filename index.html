@@ -49,6 +49,21 @@
                 }
             }
         }
+         // Definir a login padrão do sistema
+        const LOGIN_CORRETO = "admin@nathalia.com";
+        
+        function entra() {
+            const loginDigitada = document.getElementById("emailInput").value;
+            
+            if (loginDigitada === LOGIN_CORRETO) {
+                // Redireciona para o Dashboard principal
+                window.location.href = "./html/dashboard.html";
+            } else {
+                alert("Login incorreto! Tente novamente.");
+            }
+        }
+        }
+        
     </script>
     <div class="text1">
     <p >Feito por Nathália Renata Garcia Oliveira
