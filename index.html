@@ -23,7 +23,6 @@
     </div>
 
     <script>
-        // Definir a senha e login padrão do sistema
         const SENHA_CORRETA = "12345678";
         const LOGIN_CORRETO = "admin@nathalia.com";
 
@@ -32,14 +31,17 @@
             const senhaDigitada = document.getElementById("senhaInput").value;
 
             if (loginDigitado === LOGIN_CORRETO && senhaDigitada === SENHA_CORRETA) {
-                // Redireciona para o Dashboard
-                window.location.href = "dashboard.html";
+                // Redirecionamento dinâmico que funciona tanto local quanto no GitHub Pages
+                if (window.location.hostname.includes("github.io")) {
+                    window.location.href = "/e-commerce-sales/html/dashboard.html";
+                } else {
+                    window.location.href = "html/dashboard.html";
+                }
             } else {
                 alert("E-mail ou senha incorretos! Tente novamente.");
             }
         }
 
-        // Permite entrar ao pressionar a tecla 'Enter' em qualquer um dos campos
         function verificarTeclas(event) {
             if (event.key === "Enter") {
                 entra();
