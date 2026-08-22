@@ -33,9 +33,9 @@
             if (loginDigitado === LOGIN_CORRETO && senhaDigitada === SENHA_CORRETA) {
                 // Redirecionamento dinâmico que funciona tanto local quanto no GitHub Pages
                 if (window.location.hostname.includes("github.io")) {
-                    window.location.href = "/e-commerce-sales/html/dashboard.html";
+                    window.location.href = "../html/dashboard.html";
                 } else {
-                    window.location.href = "html/dashboard.html";
+                    window.location.href = "../html/dashboard.html";
                 }
             } else {
                 alert("E-mail ou senha incorretos! Tente novamente.");
