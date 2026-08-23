@@ -8,16 +8,25 @@ function importarProdutosCSV(event) {
 
     const reader = new FileReader();
     reader.onload = function(e) {
-        const text = e.target.result;
-        const rows = text.split('\n');
+        let text = e.target.result;
+
+        // 1. Remove o caractere invisível BOM (UTF-8 BOM) do início do arquivo
+        text = text.replace(/^\uFEFF/, '');
+
+        const rows = text.split(/\r?\n/);
         const tbody = document.getElementById('products-table-body');
 
         rows.forEach((row, index) => {
             if (!row.trim()) return; // Pula linhas vazias
             if (index === 0 && row.toLowerCase().includes('produto')) return; // Pula cabeçalho
 
-            // Divide por vírgula e remove aspas das extremidades e espaços extras
-            const columns = row.split(',').map(col => col.replace(/^"|"$/g, '').trim());
+            // Detecta se o CSV usa ';' (padrão do Excel BR) ou ','
+            const delimiter = row.includes(';') ? ';' : ',';
+
+            // 2. Remove TODAS as variações de aspas (" “ ”) e espaços extras
+            const columns = row.split(delimiter).map(col => {
+                return col.replace(/["“”]/g, '').trim();
+            });
 
             if (columns.length >= 3) {
                 const tr = document.createElement('tr');
@@ -41,8 +50,7 @@ function importarProdutosCSV(event) {
         atualizarContador();
     };
 
-    // 'ISO-8859-1' ou 'UTF-8' garante que acentos como "Coração" não fiquem com os símbolos 
-    reader.readAsText(file, 'ISO-8859-1'); 
+    reader.readAsText(file, 'UTF-8');
 }
 
 // 2. EXPORTAR PRODUTOS PARA CSV
