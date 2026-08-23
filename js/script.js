@@ -1,7 +1,6 @@
 /*  --- PRODUTOS--- */
 
 // 1. IMPORTAR PRODUTOS VIA CSV
-// 1. IMPORTAR PRODUTOS VIA CSV
 function importarProdutosCSV(event) {
     const file = event.target.files[0];
     if (!file) return;
