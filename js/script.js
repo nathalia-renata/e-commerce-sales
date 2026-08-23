@@ -1,48 +1,49 @@
 /*  --- PRODUTOS--- */
 
 // 1. IMPORTAR PRODUTOS VIA CSV
-        function importarProdutosCSV(event) {
-            const file = event.target.files[0];
-            if (!file) return;
+// 1. IMPORTAR PRODUTOS VIA CSV
+function importarProdutosCSV(event) {
+    const file = event.target.files[0];
+    if (!file) return;
 
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const text = e.target.result;
-                const rows = text.split('\n');
-                const tbody = document.getElementById('products-table-body');
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const text = e.target.result;
+        const rows = text.split('\n');
+        const tbody = document.getElementById('products-table-body');
 
-                rows.forEach((row, dashboard) => {
-                    if (dashboard === 0 && row.toLowerCase().includes('produto')) return; // pula cabeçalho
-                    
-                    const columns = row.split(',');
-                    if (columns.length >= 3) {
-                        const tr = document.createElement('tr');
-                        tr.innerHTML = `
-                            <td>
-                                <div class="product-cell">
-                                    <div class="product-image"><i class="fa-regular fa-image"></i></div>
-                                    <div class="product-meta">
-                                        <span class="product-name">${columns[0] || 'Novo Produto'}</span>
-                                        <span class="product-qty">${columns[1] || '0'} unidades</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>${columns[2] || 'Geral'}</td>
-                            <td>${columns[3] || 'R$0'}</td>
-                            <td class="actions-cell"><i class="fa-solid fa-ellipsis-vertical"></i></td>
-                        `;
-                        tbody.appendChild(tr);
-                    }
-                });
-                atualizarContador();
-            };
-            reader.readAsText(file);
-        }
+        rows.forEach((row, index) => {
+            if (!row.trim()) return; // Pula linhas vazias
+            if (index === 0 && row.toLowerCase().includes('produto')) return; // Pula cabeçalho
 
-        function atualizarContador() {
-            const totalLinhas = document.querySelectorAll("#products-table-body tr").length;
-            document.getElementById("total-count-header").innerText = `${totalLinhas} Produtos`;
-        }
+            // Divide por vírgula e remove aspas das extremidades e espaços extras
+            const columns = row.split(',').map(col => col.replace(/^"|"$/g, '').trim());
+
+            if (columns.length >= 3) {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>
+                        <div class="product-cell">
+                            <div class="product-image"><i class="fa-regular fa-image"></i></div>
+                            <div class="product-meta">
+                                <span class="product-name">${columns[0] || 'Novo Produto'}</span>
+                                <span class="product-qty">${columns[1] || '0'} unidades</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>${columns[2] || 'Geral'}</td>
+                    <td>${columns[3] || 'R$0'}</td>
+                    <td class="actions-cell"><i class="fa-solid fa-ellipsis-vertical"></i></td>
+                `;
+                tbody.appendChild(tr);
+            }
+        });
+        atualizarContador();
+    };
+
+    // 'ISO-8859-1' ou 'UTF-8' garante que acentos como "Coração" não fiquem com os símbolos 
+    reader.readAsText(file, 'ISO-8859-1'); 
+}
 
 // 2. EXPORTAR PRODUTOS PARA CSV
         function exportarProdutosCSV() {
