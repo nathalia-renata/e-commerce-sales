@@ -8,25 +8,19 @@ function importarProdutosCSV(event) {
 
     const reader = new FileReader();
     reader.onload = function(e) {
-        let text = e.target.result;
-
-        // 1. Remove o caractere invisível BOM (UTF-8 BOM) do início do arquivo
-        text = text.replace(/^\uFEFF/, '');
-
+        const text = e.target.result;
         const rows = text.split(/\r?\n/);
         const tbody = document.getElementById('products-table-body');
 
         rows.forEach((row, index) => {
-            if (!row.trim()) return; // Pula linhas vazias
-            if (index === 0 && row.toLowerCase().includes('produto')) return; // Pula cabeçalho
+            if (!row.trim()) return; // Pula linha vazia
 
-            // Detecta se o CSV usa ';' (padrão do Excel BR) ou ','
+            // Detecta se o separador é vírgula ou ponto e vírgula (padrão do Excel BR)
             const delimiter = row.includes(';') ? ';' : ',';
+            const columns = parseCSVLine(row, delimiter);
 
-            // 2. Remove TODAS as variações de aspas (" “ ”) e espaços extras
-            const columns = row.split(delimiter).map(col => {
-                return col.replace(/["“”]/g, '').trim();
-            });
+            // Pula o cabeçalho
+            if (index === 0 && columns[0].toLowerCase().includes('produto')) return;
 
             if (columns.length >= 3) {
                 const tr = document.createElement('tr');
@@ -50,7 +44,41 @@ function importarProdutosCSV(event) {
         atualizarContador();
     };
 
-    reader.readAsText(file, 'UTF-8');
+    // 'ISO-8859-1' corrige acentos como "Coração" vindos do Excel no Windows
+    reader.readAsText(file, 'ISO-8859-1');
+}
+
+// Função auxiliar: Lê o CSV caractere por caractere tratando aspas e vírgulas internas
+function parseCSVLine(line, delimiter) {
+    const values = [];
+    let currentValue = '';
+    let insideQuotes = false;
+
+    for (let i = 0; i < line.length; i++) {
+        const char = line[i];
+        const nextChar = line[i + 1];
+
+        if (char === '"' || char === '“' || char === '”') {
+            if (insideQuotes && (nextChar === '"' || nextChar === '”')) {
+                currentValue += '"';
+                i++;
+            } else {
+                insideQuotes = !insideQuotes;
+            }
+        } else if (char === delimiter && !insideQuotes) {
+            values.push(cleanValue(currentValue));
+            currentValue = '';
+        } else {
+            currentValue += char;
+        }
+    }
+    values.push(cleanValue(currentValue));
+    return values;
+}
+
+// Limpa qualquer aspa ou espaço remanescente nas pontas do texto
+function cleanValue(val) {
+    return val.trim().replace(/^["'“”]+|["'“”]+$/g, '');
 }
 
 // 2. EXPORTAR PRODUTOS PARA CSV
